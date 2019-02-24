@@ -1,0 +1,16 @@
+<div class="site">
+  <!-- header -->
+  <header class="header" [ngStyle]="{height: headerHeight}">
+    <app-layout-default-header></app-layout-default-header>
+  </header>
+
+  <!-- main -->
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- footer -->
+  <footer class="footer" [ngStyle]="{height: footerHeight}">
+    <app-layout-default-footer></app-layout-default-footer>
+  </footer>
+</div>

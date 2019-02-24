@@ -1,0 +1,54 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@ang-kit/http": [
+        "dist/ang-kit/http"
+      ],
+      "@ang-kit/http/*": [
+        "dist/ang-kit/http/*"
+      ],
+      "@ang-kit/component": [
+        "dist/ang-kit/component"
+      ],
+      "@ang-kit/component/*": [
+        "dist/ang-kit/component/*"
+      ],
+      "@ang-kit/auth": [
+        "dist/ang-kit/auth"
+      ],
+      "@ang-kit/auth/*": [
+        "dist/ang-kit/auth/*"
+      ],
+      "@ang-kit/util": [
+        "dist/ang-kit/util"
+      ],
+      "@ang-kit/util/*": [
+        "dist/ang-kit/util/*"
+      ],
+      "@shared": [
+        "src/app/shared"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+#IntelliJ configuration files
+.idea
+
+Thumbs.db
+.DS_Store
+
+# Ignores TypeScript files, but keeps definitions.
+*.ts
+!*.d.ts
+!__name@dasherize__.component.spec.ts
+!__name@dasherize__.component.ts

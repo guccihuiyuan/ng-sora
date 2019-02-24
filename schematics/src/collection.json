@@ -1,0 +1,20 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "create an @ang-kit workspace",
+      "factory": "./ng-add",
+      "schema": "./ng-add/schema.json"
+    },
+    "ng-add-setup-project": {
+      "description": "create an @ang-kit workspace",
+      "factory": "./ng-add/setup-project/index",
+      "schema": "./ng-add/schema.json"
+    },
+    "ad-st": {
+      "description": "create an ad-st component",
+      "factory": "./ad-st",
+      "schema": "./ad-st/schema.json"
+    }
+  }
+}

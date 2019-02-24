@@ -1,0 +1,109 @@
+<% if(tableType === 'basic') { %>
+<ad-st
+    #basic
+    [initLoadData]="false"
+    [data]="basicData"
+    [columns]="basicColumns"
+    [showPagination]="false"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'checkbox') { %>
+<ad-st
+#checkbox
+    [showCheckBox]="true"
+    [initLoadData]="false"
+    [data]="checkboxData"
+    [columns]="checkboxColumns"
+    [showPagination]="true"
+    [isFrontPagination]="true"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'sort') { %>
+<ad-st
+#sort
+    [initLoadData]="false"
+    [data]="sortData"
+    [columns]="sortColumns"
+    [showPagination]="false"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'expand') { %>
+<ad-st
+    #expand
+    [expand]="expand"
+    [initLoadData]="false"
+    [data]="expandData"
+    [columns]="expandColumns"
+    [showPagination]="false"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'tree') { %>
+<ad-st
+  #tree
+  [initLoadData]="false"
+  [data]="treeData"
+  [columns]="treeColumns"
+  [showPagination]="false"
+  [asyncTreeData]="true"
+  (requestChildrenDataEmitter)="requestChildrenDataEmitter($event)"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'external-request') { %>
+<ad-st
+    #request
+    [data]="reqData"
+    [columns]="reqColumns"
+    [total]="reqTotal"
+    [extraParams]="reqExtraParams"
+    (requestDataEmitter)="reqRequestDataEmitter($event)"
+    [showPagination]="true"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'internal-request') { %>
+<ad-st
+    #request
+    [resReName]="{list: 'data.list', total: 'data.total'}"
+    [reqMethod]="'POST'"
+    [data]="innerReqUrl"
+    [columns]="innerReqColumns"
+    [extraParams]="innerReqExtraParams"
+    [showPagination]="true"
+>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'styles') { %>
+<ad-st
+  #styles
+  [initLoadData]="false"
+  [data]="stylesData"
+  [columns]="stylesColumns"
+  [showPagination]="false"
+  [showCheckBox]="false"
+></ad-st>
+</ad-st>
+<% } %>
+
+<% if(tableType === 'group') { %>
+<ad-st
+  #group
+  [showCheckBox]="true"
+  [initLoadData]="false"
+  [data]="groupData"
+  [columns]="groupColumns"
+  [showPagination]="false"
+>
+</ad-st>
+<% } %>

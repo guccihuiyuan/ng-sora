@@ -1,0 +1,147 @@
+.code-box {
+  border: 1px solid #ebedf0;
+  border-radius: 2px;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin: 0 0 16px;
+  transition: .2s;
+}
+
+.code-box-demo {
+  border-bottom: 1px solid #ebedf0;
+  padding: 42px 24px 50px;
+  color: rgba(0,0,0,.65);
+}
+
+.code-box-title {
+  position: absolute;
+  top: -14px;
+  padding: 1px 8px;
+  margin-left: -8px;
+  color: #777;
+  border-radius: 2px 2px 0 0;
+  background: #fff;
+  transition: background-color .4s;
+}
+
+.code-box-meta.markdown {
+  position: relative;
+  padding: 18px 32px;
+  border-radius: 0 0 2px 2px;
+  transition: background-color .4s;
+  width: 100%;
+  font-size: 14px;
+}
+
+.code-box-meta.markdown p {
+  margin-bottom: 0;
+}
+
+.code-box .code-expand-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 23px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.code-box .code-expand-icon-show {
+  opacity: .55;
+  pointer-events: auto;
+}
+
+.code-box .code-expand-icon-hide, .code-box .code-expand-icon-show {
+  transition: .4s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  max-width: 100%;
+  vertical-align: baseline;
+  box-shadow: none;
+}
+
+.code-box .highlight-wrapper {
+  display: none;
+  overflow: auto;
+  border-radius: 0 0 2px 2px;
+  border-top: 1px dashed lightgray;
+
+  padding: 32px;
+}
+
+.code-box .highlight-wrapper-expand {
+  display: block;
+}
+
+:host {
+  ::ng-deep {
+    .th1 {
+      background: #003348;
+      color: white;
+      z-index: 100;
+      position: relative;
+      border-bottom: 0;
+    }
+    .th2 {
+      background: deepskyblue;
+      color: black;
+      z-index: 100;
+      position: relative;
+      border-bottom: 0;
+    }
+
+    // 滚动动画
+    #styleTable .ant-table-tbody {
+      animation: 5s rolling linear infinite normal;
+    }
+    @keyframes rolling {
+      0% {
+        transform: translateY(0);
+      }
+      10% {
+        transform: translateY(-5%);
+      }
+      20% {
+        transform: translateY(-10%);
+      }
+      30% {
+        transform: translateY(-15%);
+      }
+      40% {
+        transform: translateY(-20%);
+      }
+      50% {
+        transform: translateY(-25%);
+      }
+      60% {
+        transform: translateY(-30%);
+      }
+      70% {
+        transform: translateY(-35%);
+      }
+      80% {
+        transform: translateY(-40%);
+      }
+      90% {
+        transform: translateY(-45%);
+      }
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+
+
+
+

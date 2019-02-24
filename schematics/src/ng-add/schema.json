@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "nz-sora-add",
+  "title": "nz-sora-add schema",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "http": {
+      "type": "boolean",
+      "description": "add @ang-kit/http module",
+      "default": true
+    },
+    "component": {
+      "type": "boolean",
+      "description": "add @ang-kit/component module",
+      "default": true
+    },
+    "auth": {
+      "type": "boolean",
+      "description": "add @ang-kit/auth module",
+      "default": true
+    },
+    "util": {
+      "type": "boolean",
+      "description": "add @ang-kit/util module",
+      "default": true
+    }
+  }
+}

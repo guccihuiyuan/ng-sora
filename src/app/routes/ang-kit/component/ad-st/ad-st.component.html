@@ -1,0 +1,334 @@
+<h2 style="margin-bottom: 32px;">
+  代码演示
+</h2>
+
+<!-- 基本 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #basic
+      [initLoadData]="false"
+      [data]="basicData"
+      [columns]="basicColumns"
+      [showPagination]="false"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> 基本 </div>
+    <div><p>快速生成表格；静态数据、不分页</p></div>
+    <nz-tooltip [nzTitle]="basicExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': basicExpand, 'code-expand-icon-show': !basicExpand}"
+                   (click)="basicHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': basicExpand, 'code-expand-icon-hide': !basicExpand}"
+                   (click)="basicHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': basicExpand}">
+    <markdown [data]="basicMd | language : 'typescript'" *ngIf="basicExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- checkbox -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #checkbox
+      [showCheckBox]="true"
+      [initLoadData]="false"
+      [data]="checkboxData"
+      [columns]="checkboxColumns"
+      [showPagination]="true"
+      [isFrontPagination]="true"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> checkbox </div>
+    <div><p>多选；前端分页、缓存多页勾选数据</p></div>
+    <nz-tooltip [nzTitle]="checkboxExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': checkboxExpand, 'code-expand-icon-show': !checkboxExpand}"
+                   (click)="checkboxHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': checkboxExpand, 'code-expand-icon-hide': !checkboxExpand}"
+                   (click)="checkboxHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': checkboxExpand}">
+    <markdown [data]="checkboxMd | language : 'typescript'" *ngIf="checkboxExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 筛选和排序 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #sort
+      [initLoadData]="false"
+      [data]="sortData"
+      [columns]="sortColumns"
+      [showPagination]="false"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> sort </div>
+    <div><p>筛选和排序；支持本地筛选和后端筛选，过滤暂时只支持后端过滤</p></div>
+    <nz-tooltip [nzTitle]="sortExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': sortExpand, 'code-expand-icon-show': !sortExpand}"
+                   (click)="sortHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': sortExpand, 'code-expand-icon-hide': !sortExpand}"
+                   (click)="sortHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': sortExpand}">
+    <markdown [data]="sortMd | language : 'typescript'" *ngIf="sortExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 可展开 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #expand
+      [expand]="expand"
+      [initLoadData]="false"
+      [data]="expandData"
+      [columns]="expandColumns"
+      [showPagination]="false"
+    >
+    </ad-st>
+    <ng-template #expand let-data>
+      {{data.extra}}
+    </ng-template>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> expand </div>
+    <div><p>可展开；用于一行显示不完的数据</p></div>
+    <nz-tooltip [nzTitle]="expandExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': expandExpand, 'code-expand-icon-show': !expandExpand}"
+                   (click)="expandHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': expandExpand, 'code-expand-icon-hide': !expandExpand}"
+                   (click)="expandHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': expandExpand}">
+    <markdown [data]="expandMd | language : 'typescript'" *ngIf="expandExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 树形结构 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #tree
+      [initLoadData]="false"
+      [data]="treeData"
+      [columns]="treeColumns"
+      [showPagination]="false"
+      [asyncTreeData]="true"
+      (requestChildrenDataEmitter)="requestChildrenDataEmitter($event)"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> tree </div>
+    <div><p>树形结构；</p></div>
+    <nz-tooltip [nzTitle]="treeExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': treeExpand, 'code-expand-icon-show': !treeExpand}"
+                   (click)="treeHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': treeExpand, 'code-expand-icon-hide': !treeExpand}"
+                   (click)="treeHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': treeExpand}">
+    <markdown [data]="treeMd | language : 'typescript'" *ngIf="treeExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 外部请求数据 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #request
+      [data]="reqData"
+      [columns]="reqColumns"
+      [total]="reqTotal"
+      [extraParams]="reqExtraParams"
+      (requestDataEmitter)="reqRequestDataEmitter($event)"
+      [showPagination]="true"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> request </div>
+    <div><p>外部请求数据；</p></div>
+    <nz-tooltip [nzTitle]="requestExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': requestExpand, 'code-expand-icon-show': !requestExpand}"
+                   (click)="requestHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': requestExpand, 'code-expand-icon-hide': !requestExpand}"
+                   (click)="requestHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': requestExpand}">
+    <markdown [data]="requestMd | language : 'typescript'" *ngIf="requestExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 内部请求数据 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <!-- 放演示代码 HTML -->
+    <ad-st
+      #request
+      [resReName]="{list: 'data.list', total: 'data.total'}"
+      [reqMethod]="'POST'"
+      [data]="innerReqUrl"
+      [columns]="innerReqColumns"
+      [extraParams]="innerReqExtraParams"
+      [showPagination]="true"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> request </div>
+    <div><p>内部请求数据；</p></div>
+    <nz-tooltip [nzTitle]="innerReqExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': innerReqExpand, 'code-expand-icon-show': !innerReqExpand}"
+                   (click)="innerReqHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': innerReqExpand, 'code-expand-icon-hide': !innerReqExpand}"
+                   (click)="innerReqHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': innerReqExpand}">
+    <markdown [data]="innerReqMd | language : 'typescript'" *ngIf="innerReqExpand"></markdown>
+  </section>
+</div>
+
+
+
+
+
+<!-- 修改样式 -->
+<div class="code-box">
+  <section class="code-box-demo" id="styleTable">
+    <!-- 如果要滚动动画，则打开 -->
+    <div style="height: 280px;overflow: hidden">
+      <!-- 放演示代码 HTML -->
+      <ad-st
+        #styles
+        [initLoadData]="false"
+        [data]="stylesData"
+        [columns]="stylesColumns"
+        [showPagination]="false"
+        [showCheckBox]="false"
+      ></ad-st>
+    </div>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> styles </div>
+    <div><p>修改样式；</p></div>
+    <nz-tooltip [nzTitle]="stylesExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': stylesExpand, 'code-expand-icon-show': !stylesExpand}"
+                   (click)="stylesHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': stylesExpand, 'code-expand-icon-hide': !stylesExpand}"
+                   (click)="stylesHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': stylesExpand}">
+    <markdown [data]="stylesMd | language : 'typescript'" *ngIf="stylesExpand"></markdown>
+  </section>
+</div>
+
+<!-- 分组 -->
+<div class="code-box">
+  <section class="code-box-demo">
+    <ad-st
+      #group
+      [showCheckBox]="true"
+      [initLoadData]="false"
+      [data]="groupData"
+      [columns]="groupColumns"
+      [showPagination]="false"
+    >
+    </ad-st>
+  </section>
+  <!-- 注释 -->
+  <section class="code-box-meta markdown">
+    <div class="code-box-title"> group </div>
+    <div><p>表头分组；</p></div>
+    <nz-tooltip [nzTitle]="groupExpand ? '隐藏代码' : '显示代码'">
+            <span class="code-expand-icon" nz-tooltip>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" [ngClass]="{'code-expand-icon-hide': groupExpand, 'code-expand-icon-show': !groupExpand}"
+                   (click)="groupHandle()" />
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg" [ngClass]="{'code-expand-icon-show': groupExpand, 'code-expand-icon-hide': !groupExpand}"
+                   (click)="groupHandle()" />
+            </span>
+    </nz-tooltip>
+  </section>
+  <!-- 代码 -->
+  <section class="highlight-wrapper" [ngClass]="{'highlight-wrapper-expand': groupExpand}">
+    <markdown [data]="groupMd | language : 'typescript'" *ngIf="groupExpand"></markdown>
+  </section>
+</div>

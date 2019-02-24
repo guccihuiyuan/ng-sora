@@ -1,0 +1,53 @@
+.main-wrapper {
+  position: relative;
+  background: #fff;
+  padding: 40px 0 0 0;
+}
+
+.main-container {
+  position: relative;
+  background: #fff;
+  border-left: 1px solid #ebedf0;
+  padding: 0 170px 144px 64px;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+  }
+  .main-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 0;
+    > .markdown > * {
+      width: 100% !important;
+    }
+  }
+}
+
+.markdown {
+  color: #314659;
+  font-size: 14px;
+  display: block;
+}
+.markdown h1 {
+  color: #0d1a26;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: #0d1a26;
+}
+
+.markdown h1 .subtitle {
+  margin-left: 12px;
+}

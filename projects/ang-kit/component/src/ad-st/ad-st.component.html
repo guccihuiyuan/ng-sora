@@ -1,0 +1,181 @@
+<!-- checkbox -->
+<ng-template #checkInfoTpl>
+  已选择 <span style="color: #49a9ee">{{checkedData.length}}</span> 项  <span>&nbsp;&nbsp;&nbsp;</span><a (click)="clearChecked()">清空</a><span *ngIf="maxCheckedCount !== null">&nbsp;&nbsp;&nbsp;</span><span style="color: red" *ngIf="maxCheckedCount !== null">（注：一次最多可选择 {{maxCheckedCount}} 项）</span>
+</ng-template>
+<div *ngIf="showCheckBox" style="margin-bottom: 10px">
+  <nz-alert [nzType]="'info'" [nzMessage]="checkInfoTpl" [nzShowIcon]="true"></nz-alert>
+</div>
+
+<!-- table -->
+<nz-table
+  #ST
+  [nzData]="_data"
+
+  [nzTitle]="header"
+  [nzFooter]="footer"
+  [nzNoResult]="noResult"
+  [nzSize]="size"
+  [nzLoading]="loading"
+  [nzLoadingDelay]="loadingDelay"
+  [nzBordered]="showBordered"
+  [nzScroll]="scroll"
+
+  [nzSimple]="simple"
+  [nzHideOnSinglePage]="hideOnSinglePage"
+  [nzShowQuickJumper]="showQuickJumper"
+  [nzShowSizeChanger]="showSizeChanger"
+  [nzShowTotal]="totalTpl"
+  [nzShowPagination]="showPagination"
+  [nzFrontPagination]="isFrontPagination"
+  [nzTotal]="total"
+  [(nzPageIndex)]="pageIndex" (nzPageIndexChange)="pageIndexChange($event)"
+  [(nzPageSize)]="pageSize" (nzPageSizeChange)="pageSizeChange($event)"
+  (nzCurrentPageDataChange)="currentPageDataChange($event)"
+>
+  <thead (nzSortChange)="theadSortChange($event)" [nzSingleSort]="isSingleSort">
+    <ng-container *ngFor="let trs of headTrs;let i = index">
+      <tr>
+        <!-- 展开列	-->
+        <th *ngIf="expand && i === 0" [nzExpand]="expand" [nzWidth]="'50px'" [nzLeft]="'0px'" [attr.rowspan]="maxRowSpan"></th>
+        <!-- 多选列 -->
+        <th *ngIf="showCheckBox && i === 0" [nzShowCheckbox]="true" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAllChange($event)" [nzWidth]="'62px'" [nzLeft]="expand ? '50px' : '0px'" [attr.rowspan]="maxRowSpan"></th>
+        <!-- 单选列 -->
+        <th *ngIf="showRadio && i === 0" [attr.rowspan]="maxRowSpan"></th>
+        <!-- 其余列 -->
+        <ng-container *ngFor="let column of trs;">
+          <th *ngIf="column.show ? column.show() : true"
+              [nzShowSort]="column?.sort"
+              [nzSortKey]="column?.index"
+              [nzSort]="column?.sort?.sortValue"
+              (nzSortChange)="sortChange(column, $event)"
+
+              [nzShowFilter]="column?.filter"
+              [nzFilterMultiple]="column?.filter?.filterMultiple"
+              [nzFilters]="column?.filter?.menus || []"
+              (nzFilterChange)="filterChange(column, $event)"
+
+              [nzWidth]="column.width"
+              [nzLeft]="column.left"
+              [nzRight]="column.right"
+
+              [attr.rowspan]="column.rowSpan"
+              [attr.colspan]="column.colSpan"
+
+              [ngClass]="column.thClassName"
+              [ngStyle]="column.thStyles">
+            <label [innerHTML]="formatTheadContent(column)"></label>
+          </th>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of ST.data;let i = index">
+      <!-- 遍历子节点 -->
+      <ng-template [ngTemplateOutlet]="childrenTpl" [ngTemplateOutletContext]="{ $implicit: data, dataIndex: i, level: 1 }"></ng-template>
+
+      <!--&lt;!&ndash; 为了树形结构 &ndash;&gt;-->
+      <!--&lt;!&ndash; 常规 &ndash;&gt;-->
+      <!--<ng-template [ngTemplateOutlet]="tbodyTpl" [ngTemplateOutletContext]="{ $implicit: data, dataIndex: i }"></ng-template>-->
+
+      <!--&lt;!&ndash; 子节点 &ndash;&gt;-->
+      <!--<ng-container *ngIf="data.children">-->
+        <!--<ng-container *ngFor="let item of data.children;let ci = index">-->
+          <!--<ng-template [ngTemplateOutlet]="tbodyTpl" [ngTemplateOutletContext]="{ $implicit: item, dataIndex: i + '-' + ci }"></ng-template>-->
+        <!--</ng-container>-->
+      <!--</ng-container>-->
+
+    </ng-container>
+  </tbody>
+</nz-table>
+
+<!-- 用来遍历子节点 -->
+<ng-template #childrenTpl let-data let-dataIndex="dataIndex" let-level="level">
+  <!-- 为了树形结构 -->
+  <!-- 常规 -->
+  <ng-template [ngTemplateOutlet]="tbodyTpl" [ngTemplateOutletContext]="{ $implicit: data, dataIndex: level + '-' + dataIndex }"></ng-template>
+
+  <!-- 子节点 -->
+  <ng-container *ngIf="data.children && data.children.length > 0 && data.treeExpand">
+    <ng-container *ngFor="let item of data.children;let ci = index">
+      <ng-template [ngTemplateOutlet]="childrenTpl" [ngTemplateOutletContext]="{ $implicit: item, dataIndex: (level + 1) + '-' + ci, level: (level + 1)}"></ng-template>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<!-- 显示总数 -->
+<ng-template #totalTpl>共 {{ total }} 条</ng-template>
+
+<!-- tbody -->
+<ng-template #tbodyTpl let-data let-dataIndex="dataIndex">
+  <tr *ngIf="!(data.parent) || (data.parent && data.parent.treeExpand)" [ngClass]="data.rowClassName">
+    <!-- 展开列	-->
+    <td *ngIf="expand && data.extra" [nzShowExpand]="true" [(nzExpand)]="data.expand" (nzExpandChange)="expandChange($event)" [nzLeft]="'0px'"></td>
+    <td *ngIf="expand && !data.extra" [nzLeft]="'0px'"></td>
+    <!-- 多选列 -->
+    <td *ngIf="showCheckBox" [nzShowCheckbox]="true" [(nzChecked)]="data.checked" (nzCheckedChange)="checkSingleChange($event, data)" [nzLeft]="expand ? '50px' : '0px'"></td>
+    <!-- 单选列 -->
+    <td *ngIf="showRadio">
+      <label nz-radio [nzAutoFocus]="true"></label>
+    </td>
+    <!-- 其余列 -->
+    <ng-container *ngFor="let column of columns;let i = index">
+      <td *ngIf="column.show ? column.show() : true" [nzLeft]="column.left" [nzRight]="column.right" [nzIndentSize]="calIndentSize(data, i)" [nzShowExpand]="i === 0 ? !!((!data.isLeaf && asyncTreeData && !data.isLoading) || (data.children && data.children.length > 0)) : false" [(nzExpand)]="data.treeExpand" [ngClass]="tdClassNameFormat(data, column)" [ngStyle]="tdStylesFormat(data, column)" (nzExpandChange)="treeExpandChange($event, data)">
+        <!-- 属性结构异步数据加载中 -->
+        <ng-container *ngIf="i === 0 && data.isLoading">
+          <i class="anticon anticon-spin anticon-loading" style="margin-right: 5px"></i>
+        </ng-container>
+
+        <!-- 文字 -->
+        <ng-container *ngIf="column.index && !column.type">
+          <label [innerHTML]="formatText(data, column, dataIndex)"></label>
+        </ng-container>
+
+        <!-- 日期 -->
+        <ng-container *ngIf="column.index && column.type === 'date'">
+          <span>{{data[column.index] | date: column.dateFormat}}</span>
+        </ng-container>
+
+        <!-- avatar -->
+        <ng-container *ngIf="column.type === 'avatar'">
+          <nz-avatar [nzSize]="'default'" [nzSrc]="formatSrc(data, column)" [nzShape]=column.shape></nz-avatar>
+        </ng-container>
+
+        <!-- 按钮 -->
+        <ng-container *ngIf="column.buttons">
+          <ng-container *ngFor="let btn of column.buttons;let last = last">
+            <!-- 是否显示按钮 -->
+            <ng-container *ngIf="formatBtnShow(data, btn)">
+              <!-- 普通按钮 -->
+              <a style="white-space: nowrap;" *ngIf="!btn.children" (click)="btnClick($event, btn, data)">
+                {{btn.text}}
+              </a>
+
+              <!-- 下拉按钮 -->
+              <nz-dropdown *ngIf="btn.children">
+                <a class="ant-dropdown-link" nz-dropdown>{{btn.text}} <i class="anticon anticon-down"></i></a>
+                <ul nz-menu>
+                  <ng-container *ngFor="let dropBtn of btn.children">
+                    <li nz-menu-item *ngIf="formatBtnShow(data, dropBtn)">
+                      <a (click)="btnClick($event, dropBtn, data)" rel="noopener noreferrer">{{dropBtn.text}}</a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </nz-dropdown>
+
+              <!-- 是否显示间距 -->
+              <nz-divider *ngIf="!last" [nzType]="'vertical'"></nz-divider>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+  </tr>
+  <!-- 当数据量太大，展示不完的时候使用 -->
+  <tr [nzExpand]="data.expand">
+    <td></td>
+    <td [attr.colspan]="columns.length + 1">
+      <ng-template [ngTemplateOutlet]="expand" [ngTemplateOutletContext]="{$implicit: data }"></ng-template>
+    </td>
+  </tr>
+</ng-template>

@@ -1,0 +1,137 @@
+<!-- 用于显示分页总数的 -->
+<ng-template #totalTpl>共 {{ pageInfo.total }} 条</ng-template>
+
+<!-- checkbox -->
+<ng-template #tpl>
+  已选择 <span style="color: #49a9ee">{{selectDataSource.length}}</span> 项  <span>&nbsp;&nbsp;&nbsp;</span><a (click)="clearChecked()">清空</a><span *ngIf="maxCheckCount !== null">&nbsp;&nbsp;&nbsp;</span><span style="color: red" *ngIf="maxCheckCount !== null">（注：一次最多可选择 {{maxCheckCount}} 项）</span>
+</ng-template>
+<div class="mb-sm" *ngIf="showCheckBox">
+  <nz-alert [nzType]="'info'" [nzMessage]="tpl" [nzShowIcon]="true"></nz-alert>
+</div>
+
+<!-- 表格 -->
+<nz-table
+  #nzTable
+  [nzData]="dataSource"
+
+  [nzSize]="tableSize"
+  [nzBordered]="showBorder"
+
+  [nzLoading]="tableIsloading"
+
+  [nzShowPagination]="isPagination"
+  [nzFrontPagination]="isFrontPagination"
+  [nzShowTotal]="totalTpl"
+  [nzShowSizeChanger]="true"
+  [nzShowQuickJumper]="true"
+  [nzHideOnSinglePage]="false"
+
+  [nzTotal]="pageInfo.total"
+  [(nzPageIndex)]="pageInfo.pageNo"
+  (nzPageIndexChange)="pageIndexChange()"
+  [(nzPageSize)]="pageInfo.pageSize"
+  (nzPageSizeChange)="pageSizeChange()">
+  <!-- 表头 -->
+  <thead>
+  <tr>
+    <!-- checkbox -->
+    <th [nzShowCheckbox]="true" *ngIf="showCheckBox" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+
+    <!-- 序号 -->
+    <th *ngIf="showNumber"><span>序号</span></th>
+
+    <!-- 其他 -->
+    <th [nzShowSort]="column.sortValue !== undefined" [nzSortKey]="column.index" [(nzSort)]="column.sortValue" (nzSortChange)="sortChange(column,$event)" *ngFor="let column of columns" [nzWidth]="column.width">
+      <span>{{column.title}}</span>
+    </th>
+  </tr>
+  </thead>
+  <!-- 表体 -->
+  <tbody>
+  <tr *ngFor="let data of nzTable.data let i = index">
+    <!-- checkbox -->
+    <td [nzShowCheckbox]="true" *ngIf="showCheckBox" [(nzChecked)]="data.checked" (nzCheckedChange)="checkSingle($event, data)" (click)="tableRowCheckboxClick($event, data)"></td>
+
+    <!-- 序号 -->
+    <td *ngIf="showNumber">{{calculateOrderNumber(i)}}</td>
+
+    <!-- 其余字段 -->
+    <td *ngFor="let column of columns">
+
+      <!-- 文字 -->
+      <ng-container *ngIf="column.index && (!column.type || column.type === 'yuan')">
+        <!-- 不可编辑或者缓存里面不在编辑状态 才显示 -->
+        <ng-container *ngIf="!column.type && (!column.canEdit || (editCache[data[dataSourceId]] && !editCache[data[dataSourceId]].edit))">
+          <label [innerHTML]="formatText(data, column)"></label>
+        </ng-container>
+
+        <!-- 元 -->
+        <ng-container *ngIf="column.type === 'yuan' && (!column.canEdit || (editCache[data[dataSourceId]] && !editCache[data[dataSourceId]].edit))">
+          <label [innerHTML]="formatYuan(data, column)"></label>
+        </ng-container>
+
+        <!-- 可编辑并且缓存里面是编辑状态 才显示 -->
+        <ng-container *ngIf="column.canEdit && column.editType && column.editType === 'input-number' && editCache[data[dataSourceId]] && editCache[data[dataSourceId]].edit">
+          <nz-input-number nz-input [(ngModel)]="editCache[data[dataSourceId]].data[column.index]" [nzMin]="column.min" [nzStep]="column.step" [nzPlaceHolder]="column.placeholder" [nzPrecision]="column.precision" (click)="$event.stopPropagation();"></nz-input-number>
+        </ng-container>
+      </ng-container>
+
+      <!-- 日期 -->
+      <ng-container *ngIf="column.index && column.type === 'date'">{{data[column.index] | date:column.dateFormat}}</ng-container>
+
+      <!-- 数字框 -->
+      <ng-container *ngIf="column.index && column.type === 'input-number'">
+        <nz-input-number nz-input [(ngModel)]="data[column.index]" [nzMin]="0" [nzStep]="1" [nzPlaceHolder]="column.placeholder" [nzPrecision]="column.precision" (click)="$event.stopPropagation();" [nzDisabled]="disableInputNumber(data, column)"></nz-input-number>
+      </ng-container>
+
+      <!-- 图片 -->
+      <ng-container *ngIf="column.type === 'img'">
+        <div class="text-center">
+          <nz-avatar [nzSize]="'large'" [nzSrc]="formatImage(data, column)" [nzShape]=column.avatarShape></nz-avatar>
+        </div>
+      </ng-container>
+
+      <!-- 按钮 -->
+      <ng-container *ngIf="column.buttons">
+        <ng-container *ngFor="let btn of column.buttons let j = index">
+          <!-- 普通按钮 -->
+          <a style="white-space: nowrap;" *ngIf="!btn.type && !btn.children && btnIsShow(data, btn) && (!editCache[data[dataSourceId]] || (editCache[data[dataSourceId]] && !editCache[data[dataSourceId]].edit))" (click)="tableRowBtnClick($event, btn, data)">{{btn.text}}</a>
+
+          <!-- 下拉按钮 -->
+          <nz-dropdown *ngIf="!btn.type && btn.children">
+            <a class="ant-dropdown-link" nz-dropdown>
+              {{btn.text}} <i class="anticon anticon-down"></i>
+            </a>
+            <ul nz-menu>
+              <ng-container *ngFor="let dropBtn of btn.children">
+                <li nz-menu-item *ngIf="btnIsShow(data, dropBtn)">
+                  <a (click)="tableRowBtnClick($event, dropBtn, data)" rel="noopener noreferrer">{{dropBtn.text}}</a>
+                </li>
+              </ng-container>
+            </ul>
+          </nz-dropdown>
+
+          <!-- 快速编辑固定显示 -->
+          <div *ngIf="btn.type && btn.type === 'edit' && btnIsShow(data, btn) && editCache[data[dataSourceId]]" style="display: inline-block">
+            <ng-container *ngIf="!editCache[data[dataSourceId]].edit">
+              <a (click)="$event.stopPropagation();startEdit(data[dataSourceId])">{{btn.text}}</a>
+            </ng-container>
+            <ng-container *ngIf="editCache[data[dataSourceId]].edit">
+              <nz-popconfirm [nzTitle]="'是否确认保存'" (nzOnConfirm)="saveEdit(data[dataSourceId])" (click)="$event.stopPropagation();">
+                <a nz-popconfirm>保存</a>
+              </nz-popconfirm>
+              <nz-divider [nzType]="'vertical'"></nz-divider>
+              <a (click)="$event.stopPropagation();cancelEdit(data[dataSourceId])">取消</a>
+            </ng-container>
+          </div>
+
+          <!-- 是否显示间距 -->
+          <nz-divider *ngIf="j < column.buttons.length - 1 && btn.isShowDivider && (!editCache[data[dataSourceId]] || (editCache[data[dataSourceId]] && !editCache[data[dataSourceId]].edit))" [nzType]="'vertical'">
+          </nz-divider>
+
+        </ng-container>
+      </ng-container>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

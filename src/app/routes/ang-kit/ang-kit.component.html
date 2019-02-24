@@ -1,0 +1,54 @@
+<div class="main-wrapper" nz-row>
+  <!-- 左边菜单 -->
+  <nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="6" nzXl="5" nzXXl="4" class="main-menu">
+    <ul nz-menu [nzMode]="'inline'" style="padding-bottom: 64px;">
+      <ng-container *ngFor="let group of menus">
+        <li nz-submenu nzOpen *ngIf="group.list">
+          <span title>{{group.title}}</span>
+          <ul>
+            <li nz-menu-item *ngFor="let item of group.list"
+                [routerLink]="item.url">
+              {{item.title}}
+              <span>{{item.subtitle}}</span>
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item *ngIf="!group.list" [routerLink]="group.url">
+          <span>{{group.title}}</span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-col>
+
+  <!-- 右边内容 -->
+  <nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="18" nzXl="19" nzXXl="20" class="main-container">
+    <article>
+      <!-- 头部 -->
+      <section class="markdown">
+        <h1>
+          {{currentDoc?.header?.title}}
+          <span class="subtitle">{{currentDoc?.header?.subtitle}}</span>
+        </h1>
+        <div [innerHTML]="currentDoc?.header?.introduce"></div>
+      </section>
+
+      <!-- 详细 -->
+      <section class="markdown">
+        <markdown [data]="currentDoc?.detail"></markdown>
+      </section>
+
+      <div nz-row style="margin-left: -8px; margin-right: -8px;">
+        <div nz-col [nzSpan]="24" style="padding-left: 8px; padding-right: 8px;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+      <!-- API -->
+      <section class="markdown" *ngIf="currentDoc?.api">
+        <h2 id="API">API</h2>
+        <markdown [data]="currentDoc?.api"></markdown>
+      </section>
+    </article>
+
+  </nz-col>
+</div>
