@@ -13,7 +13,7 @@ export class DefaultHttpInterceptor implements HttpInterceptor {
     if (req.headers.get('Content-Type') && req.headers.get('Content-Type').indexOf('application/x-www-form-urlencoded') !== -1) {// 以FORM表单的形式提交
     // if (req.headers.get('Content-Type') === 'application/x-www-form-urlencoded') {// 以FORM表单的形式提交
       // 序列化请求参数
-      if (req.method === 'POST') {
+      if (req.method === 'POST' || req.method === 'PUT') {
         if (!body.hasOwnProperty('ANGKIT_NO_PARSE_FORM_BODY')) {// 如果提交的POST请求中没有这个字段则FORM形式提交的参数要解析
           if (body.hasOwnProperty('NO_ENCODE')) {// 不需要编码
             body = this.parseParam(body);

@@ -27,7 +27,7 @@ export class HttpService {
       case HttpRequestType.POST:
         return this.post(url, params, options);
       case HttpRequestType.PUT:
-        break;
+        return this.put(url, params, options);
       case HttpRequestType.DELETE:
         return this.delete(url, params, options);
     }
@@ -51,6 +51,29 @@ export class HttpService {
     });
 
     return this.http.post<HttpResponse>(url, params, options).pipe(
+      map(res => this.handleResponseSuccess(res)),
+      catchError(error => of(this.handleResponseError(error)))
+    );
+  }
+
+  /**
+   * PUT请求
+   */
+  put(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse> {
+    // 去掉GET请求的查询参数
+    options = Object.assign(options, {params: {}});
+
+    // 去空
+    const keys = Object.keys(params);
+    keys.forEach((key) => {
+      if (
+        params[key] === null || params[key] === 'null' || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)
+      ) {
+        delete params[key];
+      }
+    });
+
+    return this.http.put<HttpResponse>(url, params, options).pipe(
       map(res => this.handleResponseSuccess(res)),
       catchError(error => of(this.handleResponseError(error)))
     );

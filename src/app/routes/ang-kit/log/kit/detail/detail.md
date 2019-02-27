@@ -1,3 +1,11 @@
+## 7.3.1（`2019-02-27`）
+## Features
+> * @ang-kit/http：增加put请求处理
+
+<br>
+<br>
+<br>
+
 ## 7.3.0（`2019-02-24`）
 ## Bug Fixes
 > * @ang-kit/auth：优化模块引用（破坏性改动，将原有的config移动到新增的token.config.ts中）
