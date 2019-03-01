@@ -1,3 +1,12 @@
+## 7.3.2（`2019-03-01`）
+## Features
+> * @ang-kit/http：处理调自定义字段，不发出
+> * @ang-kit/auth：增加 refresh_token、expires_in、expires_time 等字段、增加add()方法
+
+<br>
+<br>
+<br>
+
 ## 7.3.1（`2019-02-27`）
 ## Features
 > * @ang-kit/http：增加put请求处理

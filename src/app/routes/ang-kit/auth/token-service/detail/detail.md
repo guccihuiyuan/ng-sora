@@ -8,6 +8,7 @@
 - `set(data: TokenModel): void`
 - `get(): TokenModel`
 - `clear(): void`
+- `add(data: TokenModel): void`
 
 ## 注册
 ```angular

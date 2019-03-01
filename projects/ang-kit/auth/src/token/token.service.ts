@@ -68,6 +68,17 @@ export class TokenService {
   }
 
   /**
+   * 添加数据
+   */
+  public add(data: TokenModel) {
+    let tokenModel = this.get();
+    // 组合
+    tokenModel = Object.assign(tokenModel, data);
+    // 在设置
+    this.set(tokenModel);
+  }
+
+  /**
    * 获取token_store_key
    */
   private getTokenStoreKey() {
