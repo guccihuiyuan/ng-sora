@@ -9,6 +9,7 @@
 <!-- table -->
 <nz-table
   #ST
+  class="ad-st"
   [nzData]="_data"
 
   [nzTitle]="header"
@@ -110,8 +111,7 @@
 <ng-template #tbodyTpl let-data let-dataIndex="dataIndex">
   <tr *ngIf="!(data.parent) || (data.parent && data.parent.treeExpand)" [ngClass]="data.rowClassName">
     <!-- 展开列	-->
-    <td *ngIf="expand && data.extra" [nzShowExpand]="true" [(nzExpand)]="data.expand" (nzExpandChange)="expandChange($event)" [nzLeft]="'0px'"></td>
-    <td *ngIf="expand && !data.extra" [nzLeft]="'0px'"></td>
+    <td *ngIf="expand" [nzShowExpand]="true" [(nzExpand)]="data.expand" (nzExpandChange)="expandChange($event)" [nzLeft]="'0px'"></td>
     <!-- 多选列 -->
     <td *ngIf="showCheckBox" [nzShowCheckbox]="true" [(nzChecked)]="data.checked" (nzCheckedChange)="checkSingleChange($event, data)" [nzLeft]="expand ? '50px' : '0px'"></td>
     <!-- 单选列 -->

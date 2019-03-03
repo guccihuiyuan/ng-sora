@@ -18,7 +18,8 @@ import { ADSTConfig } from './ad-st.config';
 @Component({
   selector: 'ad-st',
   templateUrl: './ad-st.component.html',
-  providers: [HttpService]
+  providers: [HttpService],
+  styleUrls: ['./ad-st.component.less']
 })
 export class ADSTComponent implements OnInit, OnChanges {
   /**
@@ -423,7 +424,7 @@ export class ADSTComponent implements OnInit, OnChanges {
     this.processTreeData(data, null);
 
     // 设置数据源
-    this._data = data;
+    this._data = [...data];
     if (this.showPagination && this.isFrontPagination) {// 只有前端分页的时候，才手动处理
       this.total = data.length;
     }
@@ -811,7 +812,7 @@ export class ADSTComponent implements OnInit, OnChanges {
 
     // 本地排序
     if (column.sort.compare) {
-      this._data.sort(column.sort.compare);
+      this._data = [...this._data.sort(column.sort.compare)];
       return;
     }
 

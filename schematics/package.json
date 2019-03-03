@@ -1,6 +1,6 @@
 {
   "name": "ng-sora",
-  "version": "7.3.2",
+  "version": "7.4.0",
   "description": "ng-sora schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -19,14 +19,14 @@
     ]
   },
   "dependencies": {
-    "@angular/cdk": "^7.2.0"
+    "@angular/cdk": "^7.3.3"
   },
   "devDependencies": {
-    "@angular-devkit/core": "^7.1.4",
-    "@angular-devkit/schematics": "^7.1.4",
-    "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.31",
+    "@angular-devkit/core": "^7.3.4",
+    "@angular-devkit/schematics": "^7.3.4",
+    "@types/jasmine": "~3.3.9",
+    "@types/node": "~11.10.4",
     "jasmine": "^2.8.0",
-    "typescript": "~3.1.6"
+    "typescript": "^3.2.2"
   }
 }

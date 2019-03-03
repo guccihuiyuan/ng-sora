@@ -1,3 +1,14 @@
+## 7.4.0（`2019-03-03`）
+## Features
+> * @ang-kit/component：同步ng-zorro-antd@7.0.0
+
+## Bug Fixes
+> * @ang-kit/component：1.修复OnPush模式下数据不可变性（本地排序） 2.修复可展开按钮在ng-zorro-antd@7.0.0下占位问题 3.修复可展开按钮 extra 属性写死
+
+<br>
+<br>
+<br>
+
 ## 7.3.2（`2019-03-01`）
 ## Features
 > * @ang-kit/http：处理调自定义字段，不发出
