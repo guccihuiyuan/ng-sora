@@ -8,8 +8,13 @@
 ## 方法
 
 - `request(type: HttpRequestType, url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse>`
+
 - `post(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse>`
+
+- `put(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse>`
+
 - `get(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse>`
+
 - `delete(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse>`
 
 ## 注册

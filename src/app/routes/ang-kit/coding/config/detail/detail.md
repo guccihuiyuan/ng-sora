@@ -6,7 +6,7 @@
 const API_PREFIX = '';
 
 // 所有的请求地址放在这里
-export const HttpApiUrls = {
+export const API_CONFIG = {
   /**
    * 示例
    */
@@ -17,7 +17,7 @@ export const HttpApiUrls = {
 };
 ```
 
-外部通过这个 **HttpApiUrls** 对象来获取请求地址
+外部通过这个 **API_CONFIG** 对象来获取请求地址
 
 
 ## 数据字典
@@ -28,8 +28,9 @@ export const HttpApiUrls = {
  * 数据字典子项
  */
 export interface IDataDictItem {
-  CODE: string;
+  CODE: string | number;
   DESC: string;
+  EXTRA_DESC?: string;
 }
 
 /**
@@ -61,8 +62,8 @@ export function GET_ARRAR_FROM_DICT(dictType: object): IDataDictItem[] {
  * @param code     值
  * @constructor
  */
-export function GET_DESC_FROM_DICT(dictType: object, code: string): string {
-  if (!code) {
+export function GET_DESC_FROM_DICT(dictType: object, code: string | number): string {
+  if (code !== 0 && !code) {
     return '';
   }
 
