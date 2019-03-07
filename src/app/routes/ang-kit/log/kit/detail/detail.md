@@ -1,3 +1,11 @@
+## 7.4.1（`2019-03-07`）
+## Bug Fixes
+> * @ang-kit/component：修复内部请求无数据时，页面不刷新
+
+<br>
+<br>
+<br>
+
 ## 7.4.0（`2019-03-03`）
 ## Features
 > * @ang-kit/component：同步ng-zorro-antd@7.0.0

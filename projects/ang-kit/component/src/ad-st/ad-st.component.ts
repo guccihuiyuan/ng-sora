@@ -777,7 +777,9 @@ export class ADSTComponent implements OnInit, OnChanges {
 
         let dataSource = this.deepGet(httpResponseData, this.resReName.list);
         if (dataSource === null) {
-          return;
+          // 没有数据的时候，显示空数据
+          dataSource = [];
+          // return;
         }
 
         if (this.preDataChange) {
