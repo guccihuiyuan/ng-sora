@@ -10,6 +10,6 @@ export class TokenServiceComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.tokenService.set({token: 'token'});
-    this.tokenService.clear();
+    // this.tokenService.clear();
   }
 }

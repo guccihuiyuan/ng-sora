@@ -1,3 +1,11 @@
+## 7.4.2（`2019-03-11`）
+## Bug Fixes
+> * @ang-kit/auth：配置 token_ignores 字段，忽略不需要添加token的请求
+
+<br>
+<br>
+<br>
+
 ## 7.4.1（`2019-03-07`）
 ## Bug Fixes
 > * @ang-kit/component：修复内部请求无数据时，页面不刷新

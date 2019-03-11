@@ -1,9 +1,9 @@
 {
   "name": "@ang-kit/component",
-  "version": "7.4.1",
+  "version": "7.4.2",
   "author": "Yang",
   "peerDependencies": {
-    "@ang-kit/http": "~7.4.1",
+    "@ang-kit/http": "~7.4.2",
     "ng-zorro-antd": "^7.0.0"
   }
 }

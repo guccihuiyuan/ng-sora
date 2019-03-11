@@ -76,7 +76,7 @@ export interface TokenConfig {
   /**
    * 哪些请求忽略Token
    */
-  token_ignores?: Array<string>;
+  token_ignores?: RegExp[];
   /**
    * 发送Token认证请求的时候，header头中的key
    */

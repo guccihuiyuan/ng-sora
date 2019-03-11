@@ -38,9 +38,16 @@ export class SimpleTokenInterceptor implements HttpInterceptor {
       config = Object.assign({}, this.defaultTokenConfig, config);
     }
 
-    const {token_send_key_header, token_send_template_header} = config;
+    const {token_send_key_header, token_send_template_header, token_ignores} = config;
 
-    // // 对不需要处理Token验证的请求放行
+    // 对不需要处理Token验证的请求放行
+    if (token_ignores && token_ignores.length > 0) {
+      for (const item of token_ignores as RegExp[]) {
+        if (item.test(req.url)) {
+          return next.handle(req);
+        }
+      }
+    }
     // if (token_ignores.length > 0) {
     //   for (let i = 0; i < token_ignores.length; i++) {
     //     if (req.url.includes(token_ignores[i])) {
