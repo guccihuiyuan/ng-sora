@@ -1,3 +1,12 @@
+## 7.4.3（`2019-03-15`）
+## Features
+> * 更新 package.json 版本号
+> * 更新 @ang-kit 版本号 为 v7.4.3
+
+<br>
+<br>
+<br>
+
 ## 7.4.2（`2019-03-11`）
 ## Features
 > * 更新 package.json 版本号

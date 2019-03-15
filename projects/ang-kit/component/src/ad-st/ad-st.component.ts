@@ -14,7 +14,7 @@ import { debounceTime } from 'rxjs/operators';
 import { ADSTColumn, ADSTColumnBtn, ADSTColumnGroup, ADSTData, ADSTReqParams, ADSTReqReName, ADSTResReName } from './ad-st.interface';
 import { HttpService, HttpRequestType } from '@ang-kit/http';
 import { ADSTConfig } from './ad-st.config';
-
+// TODO 新功能 1.可以禁用某些checkbox
 @Component({
   selector: 'ad-st',
   templateUrl: './ad-st.component.html',
@@ -789,7 +789,7 @@ export class ADSTComponent implements OnInit, OnChanges {
         this.resetColumnsCache();
         this.processData(dataSource);
 
-        if (!this.isFrontPagination) {// 后端分页
+        if (!this.isFrontPagination && this.showPagination) {// 显示分页并且是后端分页
           this.total = this.deepGet(httpResponseData, this.resReName.total) || 0;
         }
       }

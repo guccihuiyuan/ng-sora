@@ -1,5 +1,13 @@
-## 7.4.2（`2019-03-11`）
+## 7.4.3（`2019-03-15`）
 ## Bug Fixes
+> * @ang-kit/component：res total 字段，只有当显示分页并且后端分页才进行处理
+
+<br>
+<br>
+<br>
+
+## 7.4.2（`2019-03-11`）
+## Features
 > * @ang-kit/auth：配置 token_ignores 字段，忽略不需要添加token的请求
 
 <br>
