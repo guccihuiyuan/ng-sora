@@ -42,6 +42,8 @@
         <th *ngIf="showCheckBox && i === 0" [nzShowCheckbox]="true" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAllChange($event)" [nzWidth]="'62px'" [nzLeft]="expand ? '50px' : '0px'" [attr.rowspan]="maxRowSpan"></th>
         <!-- 单选列 -->
         <th *ngIf="showRadio && i === 0" [attr.rowspan]="maxRowSpan"></th>
+        <!-- 序号 -->
+        <th *ngIf="showNumber && i === 0" [attr.rowspan]="maxRowSpan"><span>序号</span></th>
         <!-- 其余列 -->
         <ng-container *ngFor="let column of trs;">
           <th *ngIf="column.show ? column.show() : true"
@@ -94,12 +96,12 @@
 <ng-template #childrenTpl let-data let-dataIndex="dataIndex" let-level="level">
   <!-- 为了树形结构 -->
   <!-- 常规 -->
-  <ng-template [ngTemplateOutlet]="tbodyTpl" [ngTemplateOutletContext]="{ $implicit: data, dataIndex: level + '-' + dataIndex }"></ng-template>
+  <ng-template [ngTemplateOutlet]="tbodyTpl" [ngTemplateOutletContext]="{ $implicit: data, dataIndex: level + '-' + dataIndex, num: dataIndex }"></ng-template>
 
   <!-- 子节点 -->
   <ng-container *ngIf="data.children && data.children.length > 0 && data.treeExpand">
     <ng-container *ngFor="let item of data.children;let ci = index">
-      <ng-template [ngTemplateOutlet]="childrenTpl" [ngTemplateOutletContext]="{ $implicit: item, dataIndex: (level + 1) + '-' + ci, level: (level + 1)}"></ng-template>
+      <ng-template [ngTemplateOutlet]="childrenTpl" [ngTemplateOutletContext]="{ $implicit: item, dataIndex: (level + 1) + '-' + ci, level: (level + 1), num: dataIndex}"></ng-template>
     </ng-container>
   </ng-container>
 </ng-template>
@@ -108,7 +110,7 @@
 <ng-template #totalTpl>共 {{ total }} 条</ng-template>
 
 <!-- tbody -->
-<ng-template #tbodyTpl let-data let-dataIndex="dataIndex">
+<ng-template #tbodyTpl let-data let-dataIndex="dataIndex" let-num="num">
   <tr *ngIf="!(data.parent) || (data.parent && data.parent.treeExpand)" [ngClass]="data.rowClassName">
     <!-- 展开列	-->
     <td *ngIf="expand" [nzShowExpand]="true" [(nzExpand)]="data.expand" (nzExpandChange)="expandChange($event)" [nzLeft]="'0px'"></td>
@@ -118,6 +120,8 @@
     <td *ngIf="showRadio">
       <label nz-radio [nzAutoFocus]="true"></label>
     </td>
+    <!-- 序号 -->
+    <td *ngIf="showNumber">{{calculateOrderNumber(num)}}</td>
     <!-- 其余列 -->
     <ng-container *ngFor="let column of columns;let i = index">
       <td *ngIf="column.show ? column.show() : true" [nzLeft]="column.left" [nzRight]="column.right" [nzIndentSize]="calIndentSize(data, i)" [nzShowExpand]="i === 0 ? !!((!data.isLeaf && asyncTreeData && !data.isLoading) || (data.children && data.children.length > 0)) : false" [(nzExpand)]="data.treeExpand" [ngClass]="tdClassNameFormat(data, column)" [ngStyle]="tdStylesFormat(data, column)" (nzExpandChange)="treeExpandChange($event, data)">

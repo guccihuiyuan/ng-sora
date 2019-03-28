@@ -25,6 +25,7 @@ export class ADSTConfig {
   };
   size: 'small' | 'middle' | 'default' = 'middle';
   showBordered = true;
+  showNumber = false;
   maxCheckedCount = 500;
   tdClassName = null;
   tdStyles?: {[key: string]: string} = null;

@@ -1,3 +1,11 @@
+## 7.4.4（`2019-03-28`）
+## Features
+> * @ang-kit/component：增加序号显示
+
+<br>
+<br>
+<br>
+
 ## 7.4.3（`2019-03-15`）
 ## Bug Fixes
 > * @ang-kit/component：res total 字段，只有当显示分页并且后端分页才进行处理

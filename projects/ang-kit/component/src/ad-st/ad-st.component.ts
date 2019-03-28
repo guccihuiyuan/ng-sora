@@ -212,6 +212,12 @@ export class ADSTComponent implements OnInit, OnChanges {
   expand: TemplateRef<{ $implicit: any; }>;
 
   /**
+   * 是否显示序号
+   */
+  @Input()
+  showNumber = false;
+
+  /**
    * 是否显示勾选框
    */
   @Input()
@@ -277,6 +283,7 @@ export class ADSTComponent implements OnInit, OnChanges {
     this.resReName = totalConfig.resReName;
     this.size = totalConfig.size;
     this.showBordered = totalConfig.showBordered;
+    this.showNumber = totalConfig.showNumber;
     this.maxCheckedCount = totalConfig.maxCheckedCount;
   }
 
@@ -968,6 +975,17 @@ export class ADSTComponent implements OnInit, OnChanges {
   btnClick(event, btn: ADSTColumnBtn, data: ADSTData) {
     event.stopPropagation();
     btn.click(data);
+  }
+
+  /**
+   * 计算当前序列号
+   * @param index 当前页数的index
+   */
+  calculateOrderNumber(index) {
+    if (typeof index === 'string') {
+      return '';
+    }
+    return (this.pageIndex - 1) * (this.pageSize) + index + 1;
   }
 
   /**

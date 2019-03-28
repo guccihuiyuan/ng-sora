@@ -25,6 +25,7 @@
 | isFrontPagination | 是否前端分页 | ```boolean``` | ```false``` |
 | total | 数据总量，后端分页需要传入，前端分页自动判断 | ```number``` | ```0``` |
 | expand | 当前列是否包含展开按钮 | ```TemplateRef<{ $implicit: any; }>``` | - |
+| showNumber | 是否显示序号 | ```boolean``` | ```false``` |
 | showCheckBox | 是否显示checkbox | ```boolean``` | ```true```|
 | maxCheckedCount | 最大checked数量 | ```number``` | ```500``` |
 | showRadio | 是否显示radio | ```boolean``` | ```true``` |
@@ -46,6 +47,7 @@
 | resReName | 重命名返回参数 | ```ADSTResReName``` | - |
 | size | 表格大小 | ```'small' \| 'middle' \| 'default'``` | ```middle``` |
 | showBordered | 是否显示边框 | ```boolean``` | ```true``` |
+| showNumber | 是否显示序号 | ```boolean``` | ```false``` |
 | maxCheckedCount | 最大checked数量 | ```number``` | ```500``` |
 | tdClassName | td class | ```string``` | ```-``` |
 | tdStyles | td styles | ```{[key: string]: string}``` | ```{}``` |

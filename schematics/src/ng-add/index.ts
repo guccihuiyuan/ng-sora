@@ -4,7 +4,7 @@ import { NodePackageInstallTask, RunSchematicTask } from '@angular-devkit/schema
 import { Schema as NgAddOptions } from './schema';
 import { addPackageToPackageJson } from '../utils/package';
 
-const version = '^7.4.3';
+const version = '^7.4.4';
 
 const packages = [
   {name: '@ang-kit/http', version: version},
