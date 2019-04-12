@@ -1,3 +1,12 @@
+## 7.4.5（`2019-04-12`）
+## Features
+> * @ang-kit/component：去掉缓存
+
+<br>
+<br>
+<br>
+
+
 ## 7.4.4（`2019-03-28`）
 ## Features
 > * @ang-kit/component：增加序号显示

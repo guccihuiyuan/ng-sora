@@ -1,6 +1,6 @@
 {
   "name": "@ang-kit/component",
-  "version": "7.4.4",
+  "version": "7.4.5",
   "author": "Yang",
   "peerDependencies": {
     "@ang-kit/http": "~7.4.4",

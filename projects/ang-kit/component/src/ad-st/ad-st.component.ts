@@ -877,11 +877,12 @@ export class ADSTComponent implements OnInit, OnChanges {
     //   return column.titleFormat(column);
     // }
     if (column.titleFormat) {
-      if (column.formatFromCache && column.titleFormatCache) {
-        return column.titleFormatCache;
-      }
-      column.titleFormatCache = column.titleFormat(column);
-      return column.titleFormatCache;
+      // if (column.formatFromCache && column.titleFormatCache) {
+      //   return column.titleFormatCache;
+      // }
+      // column.titleFormatCache = column.titleFormat(column);
+      // return column.titleFormatCache;
+      return column.titleFormat(column);
     }
     if (!column.title || column.title === 'null') {
       return '';
@@ -897,11 +898,12 @@ export class ADSTComponent implements OnInit, OnChanges {
     //   return column.format(data);
     // }
     if (column.format) {
-      if (column.formatFromCache && column.formatCache[dataIndex]) {// 从缓存中取值
-        return column.formatCache[dataIndex];
-      }
-      column.formatCache[dataIndex] = column.format(data);
-      return column.formatCache[dataIndex];
+      // if (column.formatFromCache && column.formatCache[dataIndex]) {// 从缓存中取值
+      //   return column.formatCache[dataIndex];
+      // }
+      // column.formatCache[dataIndex] = column.format(data);
+      // return column.formatCache[dataIndex];
+      return column.format(data);
     }
     if (data[column.index] === 0) {
       return 0;
