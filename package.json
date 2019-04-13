@@ -4,11 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.json --port 6100",
-    "build-package": "ng build --prod @ang-kit/http && ng build --prod @ang-kit/component && ng build --prod @ang-kit/auth && ng build --prod @ang-kit/util",
+    "build-package": "ng build --prod @ang-kit/http && ng build --prod @ang-kit/component && ng build --prod @ang-kit/auth && ng build --prod @ang-kit/util && ng build --prod @ang-kit/theme",
     "publish-auth-package": "cd dist\\ang-kit\\auth && npm publish -access public && cd ../../../",
     "publish-component-package": "cd dist\\ang-kit\\component && npm publish -access public && cd ../../../",
     "publish-http-package": "cd dist\\ang-kit\\http && npm publish -access public && cd ../../../",
     "publish-util-package": "cd dist\\ang-kit\\util && npm publish -access public && cd ../../../",
+    "publish-theme-package": "cd dist\\ang-kit\\theme && npm publish -access public && cd ../../../",
     "build": "ng build --prod --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",

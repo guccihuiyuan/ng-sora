@@ -48,6 +48,12 @@
       ],
       "@shared/*": [
         "src/app/shared/*"
+      ],
+      "@ang-kit/theme": [
+        "dist/ang-kit/theme"
+      ],
+      "@ang-kit/theme/*": [
+        "dist/ang-kit/theme/*"
       ]
     }
   }

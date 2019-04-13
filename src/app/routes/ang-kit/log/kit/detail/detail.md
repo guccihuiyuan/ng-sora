@@ -1,6 +1,7 @@
 ## 7.4.5（`2019-04-12`）
 ## Features
 > * @ang-kit/component：去掉缓存
+> * @ang-kit/theme：新增AdminMenuService服务类
 
 <br>
 <br>
