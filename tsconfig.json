@@ -54,6 +54,12 @@
       ],
       "@ang-kit/theme/*": [
         "dist/ang-kit/theme/*"
+      ],
+      "@ang-kit/acl": [
+        "dist/ang-kit/acl"
+      ],
+      "@ang-kit/acl/*": [
+        "dist/ang-kit/acl/*"
       ]
     }
   }
