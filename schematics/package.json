@@ -1,6 +1,6 @@
 {
   "name": "ng-sora",
-  "version": "7.4.4",
+  "version": "7.4.5",
   "description": "ng-sora schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
