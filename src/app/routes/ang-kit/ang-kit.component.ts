@@ -33,6 +33,21 @@ export class AngKitComponent implements OnInit, OnDestroy {
       url: '/ang-kit/cli'
     },
     {
+      title: '@ang-kit/acl 权限',
+      list: [
+        {
+          url: '/ang-kit/acl/acl-service',
+          title: 'ACLService 服务',
+          subtitle: ''
+        },
+        {
+          url: '/ang-kit/acl/acl-directive',
+          title: 'ACL 指令',
+          subtitle: ''
+        }
+      ]
+    },
+    {
       title: '@ang-kit/auth 认证',
       list: [
         {
@@ -113,6 +128,22 @@ export class AngKitComponent implements OnInit, OnDestroy {
    * 所有文档对象
    */
   doc = {
+    'acl-service': {
+      header: {
+        title: 'ACLService',
+        subtitle: '服务类',
+        introduce: '',
+      },
+      detail: require('raw-loader!./acl/acl-service/detail/detail.md')
+    },
+    'acl-directive': {
+      header: {
+        title: 'ACLService',
+        subtitle: '指令',
+        introduce: '',
+      },
+      detail: require('raw-loader!./acl/acl-directive/detail/detail.md')
+    },
     'token-service': {
       header: {
         title: 'TokenService',

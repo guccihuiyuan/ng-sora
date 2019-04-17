@@ -21,6 +21,8 @@ const routes: Routes = [
       { path: 'log', loadChildren: './log/log.module#AngKitLogModule' },
       // Cli
       { path: 'cli', loadChildren: './cli/cli.module#AngKitCliModule' },
+      // ACL
+      { path: 'acl', loadChildren: './acl/acl.module#AngKitACLModule' },
     ]
   }
 ];

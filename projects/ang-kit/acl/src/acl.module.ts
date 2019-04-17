@@ -13,4 +13,4 @@ import {ACLService} from './acl.service';
     ACLService
   ]
 })
-export class AngKitAclModule { }
+export class AngKitACLModule { }
