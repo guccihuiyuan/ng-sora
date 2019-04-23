@@ -72,6 +72,7 @@
 | deleteCheckedData() | 当外部调用删除接口成功的时候，需要调用改方法，删除表格选中的数据 |
 | treeChildrenDataLoadComplete() | 树形结构子数据加载完成（外部请求的时候调用） |
 | getCheckedData() | 获取所有选中的数据 |
+| deleteAndLoadData(deleteCount: number) | 删除刷新 |
 
 </br>
 </br>

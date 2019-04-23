@@ -1,3 +1,13 @@
+## 7.4.6（`2019-04-23`）
+## Features
+> * @ang-kit/component：增加删除刷新方法
+> * 新增 @ang-kit/theme
+> * 新增 @ang-kit/acl
+
+<br>
+<br>
+<br>
+
 ## 7.4.5（`2019-04-12`）
 ## Features
 > * @ang-kit/component：去掉缓存

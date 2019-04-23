@@ -1037,4 +1037,36 @@ export class ADSTComponent implements OnInit, OnChanges {
   public getCheckedData() {
     return this.checkedData;
   }
+
+  /**
+   * 删除刷新
+   * @param deleteCount 删除数量-默认是1
+   */
+  public deleteAndLoadData(deleteCount: number = 1) {
+    if (this.showPagination) {
+      if (this.isFrontPagination) {// 前端分页
+
+      } else {// 后端分页
+        // 清空选择项目
+        this.clearChecked();
+
+        const curCount = this._data.length;
+        if (curCount - deleteCount > 0) {
+
+        } else if (curCount - deleteCount <= 0) {
+          // 计算出需要删除的页数
+          const pageCount = 1 + parseInt(((- (curCount - deleteCount)) / this.pageSize).toString(), 0);
+
+          if (this.pageIndex - pageCount > 0) {
+            this.pageIndex = this.pageIndex - pageCount;
+          } else {
+            this.pageIndex = 1;
+          }
+        }
+
+        // 刷新
+        this.loadData();
+      }
+    }
+  }
 }
