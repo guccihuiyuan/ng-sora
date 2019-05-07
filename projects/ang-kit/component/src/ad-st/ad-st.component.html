@@ -115,7 +115,7 @@
     <!-- 展开列	-->
     <td *ngIf="expand" [nzShowExpand]="true" [(nzExpand)]="data.expand" (nzExpandChange)="expandChange($event)" [nzLeft]="'0px'"></td>
     <!-- 多选列 -->
-    <td *ngIf="showCheckBox" [nzShowCheckbox]="true" [(nzChecked)]="data.checked" (nzCheckedChange)="checkSingleChange($event, data)" [nzLeft]="expand ? '50px' : '0px'"></td>
+    <td *ngIf="showCheckBox" [nzShowCheckbox]="true" [(nzChecked)]="data.checked" (nzCheckedChange)="checkSingleChange($event, data)" [nzLeft]="expand ? '50px' : '0px'" [nzDisabled]="data.disabled"></td>
     <!-- 单选列 -->
     <td *ngIf="showRadio">
       <label nz-radio [nzAutoFocus]="true"></label>

@@ -14,7 +14,7 @@ import { debounceTime } from 'rxjs/operators';
 import { ADSTColumn, ADSTColumnBtn, ADSTColumnGroup, ADSTData, ADSTReqParams, ADSTReqReName, ADSTResReName } from './ad-st.interface';
 import { HttpService, HttpRequestType } from '@ang-kit/http';
 import { ADSTConfig } from './ad-st.config';
-// TODO 新功能 1.可以禁用某些checkbox
+// TODO 新功能 1.可以禁用某些checkbox(存在问题全选问题)
 @Component({
   selector: 'ad-st',
   templateUrl: './ad-st.component.html',
@@ -648,7 +648,10 @@ export class ADSTComponent implements OnInit, OnChanges {
     if (checked) {
       let unCheckedCount = 0;
       treeData.forEach((item) => {
-        if (!item.checked) {
+        // if (!item.checked) {
+        //   unCheckedCount += 1;
+        // }
+        if (!item.checked && !item.disabled) {
           unCheckedCount += 1;
         }
       });
@@ -662,7 +665,10 @@ export class ADSTComponent implements OnInit, OnChanges {
 
     // 改变已缓存数据的选中状态
     treeData.forEach(data => {
-      data.checked = checked;
+      // data.checked = checked;
+      if (!data.disabled) {
+        data.checked = checked;
+      }
       this.changeCheckedData(data, checked);
     });
 
@@ -742,7 +748,10 @@ export class ADSTComponent implements OnInit, OnChanges {
       }
     });
 
-    if (canAdd && checked) {
+    // if (canAdd && checked) {
+    //   this.checkedData.push(data);
+    // }
+    if (canAdd && checked && !data.disabled) {
       this.checkedData.push(data);
     }
   }
