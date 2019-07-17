@@ -41,14 +41,16 @@ export class HttpService {
     options = Object.assign(options, {params: {}});
 
     // 去空
-    const keys = Object.keys(params);
-    keys.forEach((key) => {
-      if (
-        params[key] === null || params[key] === 'null' || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)
-      ) {
-        delete params[key];
-      }
-    });
+    if (params && !params['DELETE_EMPTY']) {
+      const keys = Object.keys(params);
+      keys.forEach((key) => {
+        if (
+          params[key] === null || params[key] === 'null' || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)
+        ) {
+          delete params[key];
+        }
+      });
+    }
 
     return this.http.post<HttpResponse>(url, params, options).pipe(
       map(res => this.handleResponseSuccess(res)),
@@ -64,14 +66,16 @@ export class HttpService {
     options = Object.assign(options, {params: {}});
 
     // 去空
-    const keys = Object.keys(params);
-    keys.forEach((key) => {
-      if (
-        params[key] === null || params[key] === 'null' || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)
-      ) {
-        delete params[key];
-      }
-    });
+    if (params && !params['DELETE_EMPTY']) {
+      const keys = Object.keys(params);
+      keys.forEach((key) => {
+        if (
+          params[key] === null || params[key] === 'null' || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)
+        ) {
+          delete params[key];
+        }
+      });
+    }
 
     return this.http.put<HttpResponse>(url, params, options).pipe(
       map(res => this.handleResponseSuccess(res)),
@@ -84,12 +88,14 @@ export class HttpService {
    */
   get(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse> {
     // 去空
-    const keys = Object.keys(params);
-    keys.forEach((key) => {
-      if (params[key] === null || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)) {
-        delete params[key];
-      }
-    });
+    if (params && !params['DELETE_EMPTY']) {
+      const keys = Object.keys(params);
+      keys.forEach((key) => {
+        if (params[key] === null || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)) {
+          delete params[key];
+        }
+      });
+    }
 
     options = Object.assign(options, {params: params});
 
@@ -104,12 +110,14 @@ export class HttpService {
    */
   delete(url: string, params: any = {}, options: any = HttpContentType.FORM): Observable<HttpResponse> {
     // 去空
-    const keys = Object.keys(params);
-    keys.forEach((key) => {
-      if (params[key] === null || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)) {
-        delete params[key];
-      }
-    });
+    if (params && !params['DELETE_EMPTY']) {
+      const keys = Object.keys(params);
+      keys.forEach((key) => {
+        if (params[key] === null || params[key] === '' || (params[key] instanceof Array && params[key].length === 0)) {
+          delete params[key];
+        }
+      });
+    }
 
     options = Object.assign(options, {params: params});
 
