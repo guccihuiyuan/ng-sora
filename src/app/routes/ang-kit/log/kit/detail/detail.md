@@ -1,3 +1,11 @@
+## 7.5.3（`2019-07-17`）
+## Features
+> * @ang-kit/http：允许不删除控制
+
+<br>
+<br>
+<br>
+
 ## 7.4.6（`2019-04-23`）
 ## Features
 > * @ang-kit/component：增加删除刷新方法
