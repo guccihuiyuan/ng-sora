@@ -675,8 +675,10 @@ export class ADSTComponent implements OnInit, OnChanges {
     // 更新状态
     const allChecked = treeData.every(v => v.checked === true);
     const allUnChecked = treeData.every(v => !v.checked);
-    this.allChecked = allChecked;
-    this.indeterminate = (!allChecked) && (!allUnChecked);
+    if (allChecked || allUnChecked) {
+      this.allChecked = allChecked;
+      this.indeterminate = (!allChecked) && (!allUnChecked);
+    }
   }
 
   /**

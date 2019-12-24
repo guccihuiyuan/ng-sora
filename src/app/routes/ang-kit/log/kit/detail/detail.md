@@ -1,3 +1,11 @@
+## 7.5.1（`2019-12-24`）
+## Features
+> * @ang-kit/component：ad-st：全选/取消全选判断
+
+<br>
+<br>
+<br>
+
 ## 7.5.6（`2019-07-17`）
 ## Features
 > * @ang-kit/http：允许不删除控制
