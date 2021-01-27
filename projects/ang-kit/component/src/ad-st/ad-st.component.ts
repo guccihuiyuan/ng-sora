@@ -46,6 +46,7 @@ export class ADSTComponent implements OnInit, OnChanges {
   /**
    * 每页数量
    */
+  @Input()
   pageSize = 10;
   /**
    * 当前选中的数据，外部直接获取，不能修改，只能读取
